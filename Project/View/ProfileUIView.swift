@@ -40,7 +40,7 @@ class ProfileUIView: UIView {
         profileImageView.backgroundColor = .gray
         profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 1.0
-        profileImageView.layer.cornerRadius = 5.0
+        profileImageView.makeCorner(withRadius: 60)
         profileImageView.autoSetDimension(.width, toSize: 120.0)
         profileImageView.autoSetDimension(.height, toSize: 120.0)
         
@@ -66,14 +66,20 @@ class ProfileUIView: UIView {
             profileImageView.autoPinEdge(toSuperviewEdge: .left, withInset: edgesInset)
             profileImageView.autoPinEdge(.bottom, to: .bottom, of: headerView, withOffset: centerOffset)
             
-            segmentedButtonControls.autoPinEdge(.bottom, to: .bottom, of: profileImageView, withOffset: centerOffset)
-//            segmented
-            
+            segmentedButtonControls.autoPinEdge(.bottom, to: .bottom, of: profileImageView, withOffset: centerOffset)            
             segmentedButtonControls.autoPinEdge(toSuperviewEdge: .left, withInset: edgesInset)
             segmentedButtonControls.autoPinEdge(toSuperviewEdge: .right, withInset: edgesInset)
             
             setUpConstraints = false
         }
         super.updateConstraints()
+    }
+}
+extension UIView {
+    func makeCorner(withRadius radius: CGFloat) {
+        self.layer.cornerRadius = radius
+        self.layer.cornerCurve = .continuous
+        self.layer.masksToBounds = true
+        self.layer.isOpaque = false
     }
 }

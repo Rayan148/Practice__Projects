@@ -8,7 +8,7 @@
 import UIKit
 
 class MainViewController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,7 +22,7 @@ class MainViewController: UITabBarController {
         vc2.tabBarItem.image = UIImage(systemName: "person.3")
         vc3.tabBarItem.image = UIImage(systemName: "chart.bar.doc.horizontal")
         vc4.tabBarItem.image = UIImage(systemName: "bell")
-                                         vc5.tabBarItem.image = UIImage(systemName: "person")
+        vc5.tabBarItem.image = UIImage(systemName: "person")
         
         vc1.title = "Home"
         vc2.title = "Partners"
@@ -31,6 +31,8 @@ class MainViewController: UITabBarController {
         vc5.title = "Profile"
         
         tabBar.tintColor = .label
+        tabBar.isTranslucent = false
+        
         
         setViewControllers([vc1, vc2, vc3, vc4, vc5], animated: true)
     }
