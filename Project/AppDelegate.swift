@@ -31,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    //to open the facebook url
     func application(
         _ app: UIApplication,
         open url: URL,

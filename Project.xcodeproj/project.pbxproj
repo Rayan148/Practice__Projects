@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		18AF8F0265BA27861BD8C0A1 /* Pods_Project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95F258584C91EF1E94C44633 /* Pods_Project.framework */; };
-		6A18A5F328641581003395F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A18A5F228641581003395F3 /* SceneDelegate.swift */; };
 		6A42204C2862C3C500CC134F /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A42204B2862C3C500CC134F /* NotificationView.swift */; };
 		6A42204E2862CDE600CC134F /* SingInUiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A42204D2862CDE600CC134F /* SingInUiView.swift */; };
 		6A4220502862CE0100CC134F /* SingInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A42204F2862CE0100CC134F /* SingInViewController.swift */; };
@@ -32,7 +31,6 @@
 /* Begin PBXFileReference section */
 		2290402EA6B46D7AAEC12E7B /* Pods-Project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project.release.xcconfig"; path = "Target Support Files/Pods-Project/Pods-Project.release.xcconfig"; sourceTree = "<group>"; };
 		6A18A5CD28640D03003395F3 /* Project.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project.entitlements; sourceTree = "<group>"; };
-		6A18A5F228641581003395F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = MysecondProject/MysecondProject/SceneDelegate.swift; sourceTree = "<group>"; };
 		6A42204B2862C3C500CC134F /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		6A42204D2862CDE600CC134F /* SingInUiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInUiView.swift; sourceTree = "<group>"; };
 		6A42204F2862CE0100CC134F /* SingInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingInViewController.swift; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 				6AD4CD41285F214B00B32340 /* ViewModel */,
 				6AD4CD42285F215700B32340 /* Controller */,
 				6AD4CD2B285F1A5100B32340 /* AppDelegate.swift */,
-				6A18A5F228641581003395F3 /* SceneDelegate.swift */,
 				6AD4CD34285F1A5200B32340 /* Assets.xcassets */,
 				6AD4CD36285F1A5200B32340 /* LaunchScreen.storyboard */,
 				6AD4CD39285F1A5200B32340 /* Info.plist */,
@@ -289,7 +286,6 @@
 				6AD4CD4C285F25FE00B32340 /* ProfileUIViewController.swift in Sources */,
 				6A42204C2862C3C500CC134F /* NotificationView.swift in Sources */,
 				6AD4CD2C285F1A5100B32340 /* AppDelegate.swift in Sources */,
-				6A18A5F328641581003395F3 /* SceneDelegate.swift in Sources */,
 				6AD4CD50285F400700B32340 /* PartnersViewController.swift in Sources */,
 				6AD4CD44285F21B800B32340 /* ProfileUIView.swift in Sources */,
 				6AD4CD52285F401D00B32340 /* FundraiserViewController.swift in Sources */,

@@ -11,6 +11,8 @@ import FBSDKLoginKit
 
 class SignInViewController: UIViewController {
     
+    let mainVC = MainViewController()
+    
     let signInCustomView = SignInUiView()
     let loginButton = UIButton()
     let fbSignInButton = FBLoginButton()
@@ -52,13 +54,26 @@ extension SignInViewController {
         
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         loginButton.configuration = .filled()
+        loginButton.configuration?.cornerStyle = .capsule
+        loginButton.configuration?.baseBackgroundColor = .purple
+        loginButton.clipsToBounds = true
         loginButton.setTitle("LOG IN", for: .normal)
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .primaryActionTriggered)
+        loginButton.autoSetDimension(.height, toSize:  40)
+        
+        fbSignInButton.translatesAutoresizingMaskIntoConstraints = false
+//        fbSignInButton.layer.cornerCurve = .continuous
+        fbSignInButton.configuration?.cornerStyle = .capsule
+        fbSignInButton.addTarget(self, action: #selector(facebookButtonPressed), for: .primaryActionTriggered)
+        
     }
     private func addConstraints() {
         
+        let offset: CGFloat = -30.0
+        
         view.addSubview(signInCustomView)
-//        view.addSubview(fbSignInButton)
+        view.addSubview(loginButton)
+        view.addSubview(fbSignInButton)
         
         NSLayoutConstraint.activate([
             signInCustomView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -69,7 +84,11 @@ extension SignInViewController {
             loginButton.leadingAnchor.constraint(equalTo: signInCustomView.layoutMarginsGuide.leadingAnchor),
             loginButton.trailingAnchor.constraint(equalTo: signInCustomView.layoutMarginsGuide.trailingAnchor),
             
-            fbSignInButton.topAnchor.constraint(equalToSystemSpacingBelow: signInCustomView.bottomAnchor, multiplier: 2)
+//            fbSignInButton.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 5),
+//            fbSignInButton.autoPinEdge(toSuperviewSafeArea: .top),
+            fbSignInButton.leadingAnchor.constraint(equalTo: signInCustomView.layoutMarginsGuide.leadingAnchor),
+            fbSignInButton.trailingAnchor.constraint(equalTo: signInCustomView.layoutMarginsGuide.trailingAnchor),
+            fbSignInButton.autoPinEdge(.bottom, to: .top, of: signInCustomView, withOffset: offset),
             
         ])
     }
@@ -80,16 +99,16 @@ extension SignInViewController {
     @objc func loginButtonPressed() {
         
     }
+    
+    @objc func facebookButtonPressed() {
+        navigationController?.pushViewController(mainVC, animated: true)
+    }
 }
 
 extension SignInViewController: LoginButtonDelegate {
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        let token = result?.token?.tokenString
-        let request = FBSDKLoginKit.GraphRequest(graphPath: "me", parameters: ["fields": "email, name"], tokenString: token, version: nil, httpMethod: .get)
-        request.start { connection, result, error in
-            print("\(String(describing: result))")
-        }
+        getUserDataFromFacebook()
     }
             
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
@@ -97,3 +116,24 @@ extension SignInViewController: LoginButtonDelegate {
     }
     
 }
+
+extension SignInViewController {
+    
+    func getUserDataFromFacebook() {
+        
+        let request = FBSDKLoginKit.GraphRequest(graphPath: "me", parameters: ["fields": "email, id, first_name, picture, last_name"])
+        request.start { connection, result, error in
+            
+            if let err = error { print(err.localizedDescription); return } else {
+                if let fields = result as? [String:Any], let email = fields["email"] as? String, let id = fields["id"] as? String, let firstName = fields["first_name"] as? String,  let lastName = fields["last_name"] as? String {
+                    let facebookProfileString = "http://graph.facebook.com/\(id)/picture?type=large"
+                    
+                    print(email, firstName, lastName, id, facebookProfileString)
+                }
+                
+                print("\(String(describing: result))")
+            }
+        }
+}
+}
+

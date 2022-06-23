@@ -13,7 +13,7 @@ class SignInUiView: UIView {
 
     let userNameTextField = customTextField()
     let passwordTextField = customTextField()
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         
