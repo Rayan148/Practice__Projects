@@ -31,6 +31,7 @@ class SignInViewController: UIViewController {
         if let token = AccessToken.current, //Checking the current login status of an user 
                 !token.isExpired {
                 // User is logged in, do work such as go to next view controller.
+            navigationController?.pushViewController(mainVC, animated: true)
             let token = token.tokenString
             let request = FBSDKLoginKit.GraphRequest(graphPath: "me", parameters: ["fields": "email, name"], tokenString: token, version: nil, httpMethod: .get)
             request.start { connection, result, error in
@@ -62,10 +63,6 @@ extension SignInViewController {
         loginButton.autoSetDimension(.height, toSize:  40)
         
         fbSignInButton.translatesAutoresizingMaskIntoConstraints = false
-//        fbSignInButton.layer.cornerCurve = .continuous
-        fbSignInButton.configuration?.cornerStyle = .capsule
-        fbSignInButton.addTarget(self, action: #selector(facebookButtonPressed), for: .primaryActionTriggered)
-        
     }
     private func addConstraints() {
         
@@ -99,16 +96,13 @@ extension SignInViewController {
     @objc func loginButtonPressed() {
         
     }
-    
-    @objc func facebookButtonPressed() {
-        navigationController?.pushViewController(mainVC, animated: true)
-    }
 }
 
 extension SignInViewController: LoginButtonDelegate {
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
         getUserDataFromFacebook()
+        navigationController?.pushViewController(mainVC, animated: true)
     }
             
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
@@ -134,6 +128,7 @@ extension SignInViewController {
                 print("\(String(describing: result))")
             }
         }
-}
+        
+    }
 }
 
